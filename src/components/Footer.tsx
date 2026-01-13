@@ -7,13 +7,13 @@ const Footer = () => {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.1 }
-    }
+      transition: { staggerChildren: 0.1 },
+    },
   };
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 }
+    visible: { opacity: 1, y: 0 },
   };
 
   return (
@@ -38,16 +38,21 @@ const Footer = () => {
               <div className="p-2 bg-white/10 rounded-xl group-hover:bg-white/20 transition-colors">
                 <Leaf className="h-6 w-6 text-white" />
               </div>
-              <span className="text-xl font-bold text-white">Prana Organic Farms</span>
+              <span className="text-xl font-bold text-white">
+                Prana Organic Farms
+              </span>
             </Link>
             <p className="text-white/70 text-sm leading-relaxed max-w-xs">
-              Premium organic vermicompost producer and exporter. Committed to sustainable agriculture and healthier soil worldwide.
+              Premium organic vermicompost producer and exporter. Committed to
+              sustainable agriculture and healthier soil worldwide.
             </p>
           </motion.div>
 
           {/* Quick Links */}
           <motion.div variants={itemVariants}>
-            <h3 className="font-semibold text-white mb-6 text-lg">Quick Links</h3>
+            <h3 className="font-semibold text-white mb-6 text-lg">
+              Quick Links
+            </h3>
             <nav className="flex flex-col gap-3">
               {[
                 { name: "Home", path: "/" },
@@ -70,25 +75,33 @@ const Footer = () => {
 
           {/* Contact Info */}
           <motion.div variants={itemVariants}>
-            <h3 className="font-semibold text-white mb-6 text-lg">Contact Us</h3>
+            <h3 className="font-semibold text-white mb-6 text-lg">
+              Contact Us
+            </h3>
             <div className="flex flex-col gap-4">
-              <a href="tel:+919876543210" className="flex items-center gap-3 text-white/70 hover:text-white transition-colors group">
+              <a
+                href="tel:+919876543210"
+                className="flex items-center gap-3 text-white/70 hover:text-white transition-colors group"
+              >
                 <div className="p-2 bg-white/10 rounded-lg group-hover:bg-white/20 transition-colors">
                   <Phone className="h-4 w-4" />
                 </div>
                 <span className="text-sm">+91 98765 43210</span>
               </a>
-              <a href="mailto:info@pranaorganicfarms.com" className="flex items-center gap-3 text-white/70 hover:text-white transition-colors group">
+              <a
+                href="mailto:info@pranaorganicfarms.com"
+                className="flex items-center gap-3 text-white/70 hover:text-white transition-colors group"
+              >
                 <div className="p-2 bg-white/10 rounded-lg group-hover:bg-white/20 transition-colors">
                   <Mail className="h-4 w-4" />
                 </div>
-                <span className="text-sm">info@pranaorganicfarms.com</span>
+                <span className="text-sm">sayhello@pranaorganicfarms.com</span>
               </a>
               <div className="flex items-start gap-3 text-white/70">
                 <div className="p-2 bg-white/10 rounded-lg">
                   <MapPin className="h-4 w-4" />
                 </div>
-                <span className="text-sm">Organic Farm Road, Agricultural District, India</span>
+                <span className="text-sm">Karjat, Maharastra, India</span>
               </div>
             </div>
           </motion.div>
@@ -103,7 +116,7 @@ const Footer = () => {
           className="mt-12 pt-8 border-t border-white/10 text-center"
         >
           <p className="text-sm text-white/60">
-            © 2025 Prana Organic Farms | Organic Vermicompost Exporter
+            © 2025 Prana Organic Farms | Organic Exporter
           </p>
         </motion.div>
       </div>

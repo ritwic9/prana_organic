@@ -46,14 +46,17 @@ const Contact = () => {
           content="Get in touch with Prana Organic Farms for inquiries about our premium organic vermicompost. Request quotes and product information."
         />
         <meta property="og:title" content="Contact Us | Prana Organic Farms" />
-        <meta property="og:description" content="Get in touch for inquiries about our premium organic vermicompost. Request quotes and product information." />
+        <meta
+          property="og:description"
+          content="Get in touch for inquiries about our premium organic vermicompost. Request quotes and product information."
+        />
       </Helmet>
 
       {/* Hero Section */}
       <section className="relative py-32 md:py-40 overflow-hidden">
         <div className="absolute inset-0 animated-gradient" />
-        
-        <motion.div 
+
+        <motion.div
           className="absolute top-1/3 left-1/4 w-80 h-80 bg-primary/20 rounded-full blur-3xl"
           animate={{ y: [0, 30, 0] }}
           transition={{ duration: 8, repeat: Infinity }}
@@ -91,7 +94,7 @@ const Contact = () => {
       {/* Contact Section */}
       <AnimatedSection className="py-24 relative">
         <div className="absolute inset-0 bg-gradient-to-b from-muted/30 to-transparent" />
-        
+
         <div className="container relative z-10">
           <div className="max-w-5xl mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
@@ -138,7 +141,9 @@ const Contact = () => {
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="space-y-2">
-                      <Label htmlFor="fullName" className="text-foreground">Full Name *</Label>
+                      <Label htmlFor="fullName" className="text-foreground">
+                        Full Name *
+                      </Label>
                       <Input
                         id="fullName"
                         name="fullName"
@@ -151,7 +156,9 @@ const Contact = () => {
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="email" className="text-foreground">Email *</Label>
+                      <Label htmlFor="email" className="text-foreground">
+                        Email *
+                      </Label>
                       <Input
                         id="email"
                         name="email"
@@ -165,7 +172,9 @@ const Contact = () => {
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="phone" className="text-foreground">Phone / WhatsApp</Label>
+                      <Label htmlFor="phone" className="text-foreground">
+                        Phone / WhatsApp
+                      </Label>
                       <Input
                         id="phone"
                         name="phone"
@@ -178,7 +187,9 @@ const Contact = () => {
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="country" className="text-foreground">Country *</Label>
+                      <Label htmlFor="country" className="text-foreground">
+                        Country *
+                      </Label>
                       <Input
                         id="country"
                         name="country"
@@ -191,7 +202,9 @@ const Contact = () => {
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="message" className="text-foreground">Message *</Label>
+                      <Label htmlFor="message" className="text-foreground">
+                        Message *
+                      </Label>
                       <Textarea
                         id="message"
                         name="message"
@@ -239,7 +252,7 @@ const Contact = () => {
                       </div>
                       <div>
                         <h3 className="font-semibold text-foreground">Phone</h3>
-                        <p className="text-muted-foreground">+91 98765 43210</p>
+                        <p className="text-muted-foreground">+91-9876543210 </p>
                       </div>
                     </motion.a>
 
@@ -254,7 +267,7 @@ const Contact = () => {
                       <div>
                         <h3 className="font-semibold text-foreground">Email</h3>
                         <p className="text-muted-foreground">
-                          info@pranaorganicfarms.com
+                          sayhello@pranaorganicfarms.com
                         </p>
                       </div>
                     </motion.a>
@@ -271,9 +284,7 @@ const Contact = () => {
                           Farm & Office
                         </h3>
                         <p className="text-muted-foreground">
-                          Organic Farm Road,
-                          <br />
-                          Agricultural District,
+                          Karjat, Maharastra,
                           <br />
                           India
                         </p>
