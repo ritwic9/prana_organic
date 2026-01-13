@@ -1,9 +1,11 @@
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Leaf, Target, Eye, Heart, ArrowRight } from "lucide-react";
+import { Leaf, Target, Eye, Heart, ArrowRight, Users, Award } from "lucide-react";
 import Layout from "@/components/Layout";
+import GlassCard from "@/components/GlassCard";
+import AnimatedSection, { AnimatedHeading, AnimatedText } from "@/components/AnimatedSection";
+import { motion } from "framer-motion";
 
 const values = [
   {
@@ -23,6 +25,12 @@ const values = [
   },
 ];
 
+const stats = [
+  { value: "100%", label: "Organic & Natural", icon: Leaf },
+  { value: "Export", label: "Ready Quality", icon: Award },
+  { value: "Global", label: "Partners", icon: Users },
+];
+
 const About = () => {
   return (
     <Layout>
@@ -37,32 +45,62 @@ const About = () => {
       </Helmet>
 
       {/* Hero Section */}
-      <section className="py-16 md:py-20 bg-gradient-to-b from-primary/5 to-background">
-        <div className="container">
-          <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6">
+      <section className="relative py-32 md:py-40 overflow-hidden">
+        <div className="absolute inset-0 animated-gradient" />
+        
+        <motion.div 
+          className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-secondary/15 rounded-full blur-3xl"
+          animate={{ y: [0, -30, 0] }}
+          transition={{ duration: 10, repeat: Infinity }}
+        />
+
+        <div className="container relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="max-w-3xl mx-auto text-center"
+          >
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6"
+            >
               About <span className="text-primary">Prana Organic Farms</span>
-            </h1>
-            <p className="text-lg text-muted-foreground leading-relaxed">
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+              className="text-lg md:text-xl text-muted-foreground leading-relaxed"
+            >
               Prana Organic Farms produces premium-grade organic vermicompost
               using eco-friendly, chemical-free processes. Our focus is
               delivering consistent quality to international markets, ensuring
               healthier soil and better crop yield worldwide.
-            </p>
-          </div>
+            </motion.p>
+          </motion.div>
         </div>
       </section>
 
       {/* Story Section */}
-      <section className="py-16 bg-card">
-        <div className="container">
-          <div className="max-w-4xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-              <div>
-                <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-6">
+      <AnimatedSection className="py-24 relative">
+        <div className="absolute inset-0 bg-gradient-to-b from-muted/30 to-transparent" />
+        
+        <div className="container relative z-10">
+          <div className="max-w-5xl mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              <motion.div
+                initial={{ opacity: 0, x: -40 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+              >
+                <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
                   Our Story
                 </h2>
-                <div className="space-y-4 text-muted-foreground">
+                <div className="space-y-4 text-muted-foreground leading-relaxed">
                   <p>
                     Founded with a vision to transform agricultural practices,
                     Prana Organic Farms has grown from a small organic farm to a
@@ -80,117 +118,158 @@ const About = () => {
                     international standards.
                   </p>
                 </div>
-              </div>
+              </motion.div>
 
-              <div className="bg-primary/5 rounded-2xl p-8">
-                <div className="space-y-6">
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center">
-                      <Leaf className="h-6 w-6 text-primary-foreground" />
-                    </div>
-                    <div>
-                      <div className="text-3xl font-bold text-primary">100%</div>
-                      <div className="text-muted-foreground">Organic & Natural</div>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 bg-secondary rounded-full flex items-center justify-center">
-                      <Target className="h-6 w-6 text-secondary-foreground" />
-                    </div>
-                    <div>
-                      <div className="text-3xl font-bold text-secondary">Export</div>
-                      <div className="text-muted-foreground">Ready Quality</div>
-                    </div>
-                  </div>
+              <GlassCard hover={false} className="p-10">
+                <div className="space-y-8">
+                  {stats.map((stat, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, x: 20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: index * 0.15 }}
+                      className="flex items-center gap-5"
+                    >
+                      <motion.div
+                        whileHover={{ scale: 1.1, rotate: 5 }}
+                        className={`w-14 h-14 rounded-xl flex items-center justify-center ${
+                          index === 0 ? 'bg-primary' : index === 1 ? 'bg-secondary' : 'bg-accent'
+                        }`}
+                      >
+                        <stat.icon className="h-7 w-7 text-white" />
+                      </motion.div>
+                      <div>
+                        <div className={`text-3xl font-bold ${
+                          index === 0 ? 'text-primary' : index === 1 ? 'text-secondary' : 'text-accent'
+                        }`}>
+                          {stat.value}
+                        </div>
+                        <div className="text-muted-foreground">{stat.label}</div>
+                      </div>
+                    </motion.div>
+                  ))}
                 </div>
-              </div>
+              </GlassCard>
             </div>
           </div>
         </div>
-      </section>
+      </AnimatedSection>
 
       {/* Vision & Mission */}
-      <section className="py-16 bg-background">
-        <div className="container">
+      <AnimatedSection className="py-24 relative overflow-hidden">
+        <div className="container relative z-10">
           <div className="max-w-4xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <Card className="border-primary/20 bg-primary/5">
-                <CardContent className="pt-6">
-                  <div className="flex items-center gap-3 mb-4">
+              <GlassCard delay={0} className="p-8 border-primary/20">
+                <div className="flex items-center gap-3 mb-5">
+                  <motion.div
+                    whileHover={{ scale: 1.1 }}
+                    className="p-3 bg-primary/10 rounded-xl"
+                  >
                     <Eye className="h-6 w-6 text-primary" />
-                    <h3 className="text-xl font-bold text-foreground">Our Vision</h3>
-                  </div>
-                  <p className="text-muted-foreground">
-                    To be the global leader in organic soil enrichment, fostering
-                    sustainable agriculture practices that benefit farmers,
-                    communities, and the planet.
-                  </p>
-                </CardContent>
-              </Card>
+                  </motion.div>
+                  <h3 className="text-xl font-bold text-foreground">Our Vision</h3>
+                </div>
+                <p className="text-muted-foreground leading-relaxed">
+                  To be the global leader in organic soil enrichment, fostering
+                  sustainable agriculture practices that benefit farmers,
+                  communities, and the planet.
+                </p>
+              </GlassCard>
 
-              <Card className="border-secondary/20 bg-secondary/5">
-                <CardContent className="pt-6">
-                  <div className="flex items-center gap-3 mb-4">
+              <GlassCard delay={0.15} className="p-8 border-secondary/20">
+                <div className="flex items-center gap-3 mb-5">
+                  <motion.div
+                    whileHover={{ scale: 1.1 }}
+                    className="p-3 bg-secondary/10 rounded-xl"
+                  >
                     <Target className="h-6 w-6 text-secondary" />
-                    <h3 className="text-xl font-bold text-foreground">Our Mission</h3>
-                  </div>
-                  <p className="text-muted-foreground">
-                    To produce and deliver premium organic vermicompost that
-                    enhances soil health, increases crop yields, and supports
-                    sustainable farming worldwide.
-                  </p>
-                </CardContent>
-              </Card>
+                  </motion.div>
+                  <h3 className="text-xl font-bold text-foreground">Our Mission</h3>
+                </div>
+                <p className="text-muted-foreground leading-relaxed">
+                  To produce and deliver premium organic vermicompost that
+                  enhances soil health, increases crop yields, and supports
+                  sustainable farming worldwide.
+                </p>
+              </GlassCard>
             </div>
           </div>
         </div>
-      </section>
+      </AnimatedSection>
 
       {/* Values */}
-      <section className="py-16 bg-card">
-        <div className="container">
-          <h2 className="text-2xl md:text-3xl font-bold text-foreground text-center mb-12">
-            Our Core Values
-          </h2>
+      <AnimatedSection className="py-24 relative">
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-muted/30 to-transparent" />
+        
+        <div className="container relative z-10">
+          <AnimatedHeading className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground">
+              Our Core Values
+            </h2>
+          </AnimatedHeading>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
             {values.map((value, index) => (
-              <div key={index} className="text-center">
-                <div className="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <value.icon className="h-7 w-7 text-primary" />
-                </div>
+              <GlassCard key={index} delay={index * 0.15} className="p-8 text-center">
+                <motion.div
+                  whileHover={{ scale: 1.1, rotate: 10 }}
+                  className="w-16 h-16 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-2xl flex items-center justify-center mx-auto mb-5"
+                >
+                  <value.icon className="h-8 w-8 text-primary" />
+                </motion.div>
                 <h3 className="text-lg font-semibold text-foreground mb-2">
                   {value.title}
                 </h3>
-                <p className="text-muted-foreground text-sm">{value.description}</p>
-              </div>
+                <p className="text-muted-foreground text-sm leading-relaxed">{value.description}</p>
+              </GlassCard>
             ))}
           </div>
         </div>
-      </section>
+      </AnimatedSection>
 
       {/* CTA Section */}
-      <section className="py-16 bg-primary">
-        <div className="container text-center">
-          <h2 className="text-2xl md:text-3xl font-bold text-primary-foreground mb-4">
-            Let's Grow Together
-          </h2>
-          <p className="text-primary-foreground/80 mb-8 max-w-xl mx-auto">
+      <AnimatedSection className="py-24 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary to-secondary" />
+        
+        <div className="absolute inset-0 overflow-hidden">
+          <motion.div 
+            className="absolute -bottom-20 -left-20 w-96 h-96 bg-white/10 rounded-full blur-3xl"
+            animate={{ scale: [1, 1.3, 1] }}
+            transition={{ duration: 10, repeat: Infinity }}
+          />
+        </div>
+
+        <div className="container relative z-10 text-center">
+          <AnimatedHeading>
+            <h2 className="text-3xl md:text-4xl font-bold text-primary-foreground mb-4">
+              Let's Grow Together
+            </h2>
+          </AnimatedHeading>
+          <AnimatedText delay={0.2} className="text-primary-foreground/80 mb-10 max-w-xl mx-auto text-lg">
             Partner with Prana Organic Farms and join our mission to create
             healthier soil and sustainable agriculture worldwide.
-          </p>
-          <Button
-            asChild
-            size="lg"
-            className="bg-accent hover:bg-accent/90 text-accent-foreground"
+          </AnimatedText>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.4 }}
           >
-            <Link to="/contact">
-              Get in Touch
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </Link>
-          </Button>
+            <Button
+              asChild
+              size="lg"
+              className="bg-accent hover:bg-accent/90 text-accent-foreground rounded-full px-10 shadow-2xl hover:scale-105 transition-all group"
+            >
+              <Link to="/contact">
+                Get in Touch
+                <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </Button>
+          </motion.div>
         </div>
-      </section>
+      </AnimatedSection>
     </Layout>
   );
 };

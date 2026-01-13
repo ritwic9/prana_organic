@@ -2,11 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Prana Organic Farms Design System - All colors in HSL */
+/* Prana Organic Farms Design System - Glassmorphism Edition */
 
 @layer base {
   :root {
-    --background: 210 40% 98%;
+    --background: 140 20% 97%;
     --foreground: 222 47% 11%;
 
     --card: 0 0% 100%;
@@ -21,7 +21,7 @@
     --secondary: 87 80% 27%;
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 210 40% 96%;
+    --muted: 140 20% 94%;
     --muted-foreground: 215 16% 47%;
 
     --accent: 38 92% 50%;
@@ -30,11 +30,16 @@
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
+    --border: 140 20% 90%;
+    --input: 140 20% 90%;
     --ring: 142 64% 24%;
 
-    --radius: 0.5rem;
+    --radius: 1rem;
+
+    /* Glassmorphism tokens */
+    --glass: 0 0% 100% / 0.7;
+    --glass-border: 0 0% 100% / 0.3;
+    --glass-shadow: 142 64% 24% / 0.1;
 
     /* Custom brand tokens */
     --whatsapp: 142 70% 45%;
@@ -51,7 +56,7 @@
   }
 
   .dark {
-    --background: 222 47% 11%;
+    --background: 222 47% 8%;
     --foreground: 210 40% 98%;
 
     --card: 222 47% 11%;
@@ -79,6 +84,11 @@
     --input: 217 33% 17%;
     --ring: 142 64% 35%;
 
+    /* Glassmorphism tokens - dark */
+    --glass: 222 47% 15% / 0.7;
+    --glass-border: 0 0% 100% / 0.1;
+    --glass-shadow: 0 0% 0% / 0.3;
+
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -104,8 +114,72 @@
   }
 }
 
+@layer components {
+  /* Glassmorphism card */
+  .glass {
+    @apply bg-white/70 backdrop-blur-xl border border-white/30 shadow-xl;
+  }
+  
+  .glass-dark {
+    @apply bg-black/20 backdrop-blur-xl border border-white/10;
+  }
+  
+  /* Gradient text */
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary via-secondary to-primary bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient;
+  }
+  
+  /* Floating animation */
+  .float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  /* Glow effects */
+  .glow-primary {
+    box-shadow: 0 0 40px hsl(var(--primary) / 0.3);
+  }
+  
+  .glow-accent {
+    box-shadow: 0 0 40px hsl(var(--accent) / 0.4);
+  }
+  
+  /* Animated gradient background */
+  .animated-gradient {
+    background: linear-gradient(
+      -45deg,
+      hsl(var(--primary) / 0.1),
+      hsl(var(--secondary) / 0.1),
+      hsl(var(--accent) / 0.05),
+      hsl(var(--primary) / 0.1)
+    );
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+  }
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
   }
 }
