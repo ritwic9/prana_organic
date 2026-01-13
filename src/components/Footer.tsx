@@ -1,60 +1,111 @@
 import { Link } from "react-router-dom";
-import { Leaf, Mail, Phone, MapPin } from "lucide-react";
+import { Leaf, Mail, Phone, MapPin, ArrowUpRight } from "lucide-react";
+import { motion } from "framer-motion";
 
 const Footer = () => {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.1 }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 }
+  };
+
   return (
-    <footer className="bg-primary text-primary-foreground">
-      <div className="container py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <footer className="relative bg-gradient-to-br from-primary via-primary to-secondary overflow-hidden">
+      {/* Decorative elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-white/5 rounded-full blur-3xl" />
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-white/5 rounded-full blur-3xl" />
+      </div>
+
+      <div className="container relative z-10 py-16">
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="grid grid-cols-1 md:grid-cols-3 gap-12"
+        >
           {/* Brand */}
-          <div>
-            <Link to="/" className="flex items-center gap-2 mb-4">
-              <Leaf className="h-6 w-6" />
-              <span className="text-lg font-bold">Prana Organic Farms</span>
+          <motion.div variants={itemVariants}>
+            <Link to="/" className="flex items-center gap-2 mb-6 group">
+              <div className="p-2 bg-white/10 rounded-xl group-hover:bg-white/20 transition-colors">
+                <Leaf className="h-6 w-6 text-white" />
+              </div>
+              <span className="text-xl font-bold text-white">Prana Organic Farms</span>
             </Link>
-            <p className="text-primary-foreground/80 text-sm leading-relaxed">
+            <p className="text-white/70 text-sm leading-relaxed max-w-xs">
               Premium organic vermicompost producer and exporter. Committed to sustainable agriculture and healthier soil worldwide.
             </p>
-          </div>
+          </motion.div>
 
           {/* Quick Links */}
-          <div>
-            <h3 className="font-semibold mb-4">Quick Links</h3>
-            <nav className="flex flex-col gap-2">
-              <Link to="/" className="text-sm text-primary-foreground/80 hover:text-primary-foreground transition-colors">Home</Link>
-              <Link to="/product" className="text-sm text-primary-foreground/80 hover:text-primary-foreground transition-colors">Product</Link>
-              <Link to="/quality" className="text-sm text-primary-foreground/80 hover:text-primary-foreground transition-colors">Quality</Link>
-              <Link to="/about" className="text-sm text-primary-foreground/80 hover:text-primary-foreground transition-colors">About Us</Link>
-              <Link to="/contact" className="text-sm text-primary-foreground/80 hover:text-primary-foreground transition-colors">Contact</Link>
+          <motion.div variants={itemVariants}>
+            <h3 className="font-semibold text-white mb-6 text-lg">Quick Links</h3>
+            <nav className="flex flex-col gap-3">
+              {[
+                { name: "Home", path: "/" },
+                { name: "Product", path: "/product" },
+                { name: "Quality", path: "/quality" },
+                { name: "About Us", path: "/about" },
+                { name: "Contact", path: "/contact" },
+              ].map((link) => (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  className="text-white/70 hover:text-white transition-colors text-sm flex items-center gap-1 group w-fit"
+                >
+                  {link.name}
+                  <ArrowUpRight className="h-3 w-3 opacity-0 -translate-y-1 translate-x-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all" />
+                </Link>
+              ))}
             </nav>
-          </div>
+          </motion.div>
 
           {/* Contact Info */}
-          <div>
-            <h3 className="font-semibold mb-4">Contact Us</h3>
-            <div className="flex flex-col gap-3">
-              <a href="tel:+919876543210" className="flex items-center gap-2 text-sm text-primary-foreground/80 hover:text-primary-foreground transition-colors">
-                <Phone className="h-4 w-4" />
-                +91 98765 43210
+          <motion.div variants={itemVariants}>
+            <h3 className="font-semibold text-white mb-6 text-lg">Contact Us</h3>
+            <div className="flex flex-col gap-4">
+              <a href="tel:+919876543210" className="flex items-center gap-3 text-white/70 hover:text-white transition-colors group">
+                <div className="p-2 bg-white/10 rounded-lg group-hover:bg-white/20 transition-colors">
+                  <Phone className="h-4 w-4" />
+                </div>
+                <span className="text-sm">+91 98765 43210</span>
               </a>
-              <a href="mailto:info@pranaorganicfarms.com" className="flex items-center gap-2 text-sm text-primary-foreground/80 hover:text-primary-foreground transition-colors">
-                <Mail className="h-4 w-4" />
-                info@pranaorganicfarms.com
+              <a href="mailto:info@pranaorganicfarms.com" className="flex items-center gap-3 text-white/70 hover:text-white transition-colors group">
+                <div className="p-2 bg-white/10 rounded-lg group-hover:bg-white/20 transition-colors">
+                  <Mail className="h-4 w-4" />
+                </div>
+                <span className="text-sm">info@pranaorganicfarms.com</span>
               </a>
-              <div className="flex items-start gap-2 text-sm text-primary-foreground/80">
-                <MapPin className="h-4 w-4 mt-0.5 flex-shrink-0" />
-                <span>Organic Farm Road, Agricultural District, India</span>
+              <div className="flex items-start gap-3 text-white/70">
+                <div className="p-2 bg-white/10 rounded-lg">
+                  <MapPin className="h-4 w-4" />
+                </div>
+                <span className="text-sm">Organic Farm Road, Agricultural District, India</span>
               </div>
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
         {/* Bottom Bar */}
-        <div className="mt-8 pt-8 border-t border-primary-foreground/20 text-center">
-          <p className="text-sm text-primary-foreground/80">
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.4 }}
+          className="mt-12 pt-8 border-t border-white/10 text-center"
+        >
+          <p className="text-sm text-white/60">
             © 2025 Prana Organic Farms | Organic Vermicompost Exporter
           </p>
-        </div>
+        </motion.div>
       </div>
     </footer>
   );

@@ -1,7 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import {
   Shield,
   Leaf,
@@ -12,6 +11,9 @@ import {
   ArrowRight,
 } from "lucide-react";
 import Layout from "@/components/Layout";
+import GlassCard from "@/components/GlassCard";
+import AnimatedSection, { AnimatedHeading, AnimatedText } from "@/components/AnimatedSection";
+import { motion } from "framer-motion";
 
 const qualityPillars = [
   {
@@ -61,102 +63,158 @@ const Quality = () => {
       </Helmet>
 
       {/* Hero Section */}
-      <section className="py-16 md:py-20 bg-gradient-to-b from-primary/5 to-background">
-        <div className="container">
-          <div className="max-w-3xl mx-auto text-center">
-            <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
-              <Shield className="h-8 w-8 text-primary" />
-            </div>
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6">
-              Quality Assurance
-            </h1>
-            <p className="text-lg text-muted-foreground">
+      <section className="relative py-32 md:py-40 overflow-hidden">
+        <div className="absolute inset-0 animated-gradient" />
+        
+        <motion.div 
+          className="absolute top-20 left-1/4 w-80 h-80 bg-primary/20 rounded-full blur-3xl"
+          animate={{ y: [0, 20, 0], x: [0, 10, 0] }}
+          transition={{ duration: 8, repeat: Infinity }}
+        />
+
+        <div className="container relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="max-w-3xl mx-auto text-center"
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.5 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.2, type: "spring" }}
+              className="w-20 h-20 glass rounded-2xl flex items-center justify-center mx-auto mb-8"
+            >
+              <Shield className="h-10 w-10 text-primary" />
+            </motion.div>
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+              className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6"
+            >
+              Quality <span className="text-primary">Assurance</span>
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 }}
+              className="text-lg md:text-xl text-muted-foreground leading-relaxed"
+            >
               At Prana Organic Farms, quality isn't just a standard—it's our
               foundation. We maintain rigorous quality control throughout our
               production process to deliver consistent, export-ready organic
               vermicompost.
-            </p>
-          </div>
+            </motion.p>
+          </motion.div>
         </div>
       </section>
 
       {/* Quality Pillars */}
-      <section className="py-16 bg-card">
-        <div className="container">
-          <h2 className="text-2xl md:text-3xl font-bold text-foreground text-center mb-12">
-            Our Quality Pillars
-          </h2>
+      <AnimatedSection className="py-24 relative">
+        <div className="absolute inset-0 bg-gradient-to-b from-muted/30 to-transparent" />
+        
+        <div className="container relative z-10">
+          <AnimatedHeading className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground">
+              Our Quality Pillars
+            </h2>
+          </AnimatedHeading>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {qualityPillars.map((pillar, index) => (
-              <Card
-                key={index}
-                className="border-border/50 hover:border-primary/30 transition-all duration-300 hover:shadow-lg"
-              >
-                <CardContent className="pt-6">
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <pillar.icon className="h-6 w-6 text-primary" />
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-semibold text-foreground mb-2">
-                        {pillar.title}
-                      </h3>
-                      <p className="text-muted-foreground">{pillar.description}</p>
-                    </div>
+              <GlassCard key={index} delay={index * 0.15} className="p-8">
+                <div className="flex items-start gap-5">
+                  <motion.div
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    className="w-14 h-14 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-xl flex items-center justify-center flex-shrink-0"
+                  >
+                    <pillar.icon className="h-7 w-7 text-primary" />
+                  </motion.div>
+                  <div>
+                    <h3 className="text-xl font-semibold text-foreground mb-3">
+                      {pillar.title}
+                    </h3>
+                    <p className="text-muted-foreground leading-relaxed">{pillar.description}</p>
                   </div>
-                </CardContent>
-              </Card>
+                </div>
+              </GlassCard>
             ))}
           </div>
         </div>
-      </section>
+      </AnimatedSection>
 
       {/* Certifications */}
-      <section className="py-16 bg-background">
-        <div className="container">
-          <div className="max-w-2xl mx-auto text-center">
-            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-8">
-              Standards & Compliance
-            </h2>
+      <AnimatedSection className="py-24 relative overflow-hidden">
+        <div className="container relative z-10">
+          <GlassCard hover={false} className="max-w-3xl mx-auto text-center p-12">
+            <AnimatedHeading>
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-10">
+                Standards & Compliance
+              </h2>
+            </AnimatedHeading>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {certifications.map((cert, index) => (
-                <div
+                <motion.div
                   key={index}
-                  className="flex items-center gap-3 bg-primary/5 px-4 py-3 rounded-lg"
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  whileHover={{ scale: 1.02, x: 5 }}
+                  className="flex items-center gap-3 bg-primary/5 backdrop-blur-sm px-5 py-4 rounded-xl border border-primary/10"
                 >
                   <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0" />
                   <span className="text-foreground font-medium">{cert}</span>
-                </div>
+                </motion.div>
               ))}
             </div>
-          </div>
+          </GlassCard>
         </div>
-      </section>
+      </AnimatedSection>
 
       {/* CTA Section */}
-      <section className="py-16 bg-primary">
-        <div className="container text-center">
-          <h2 className="text-2xl md:text-3xl font-bold text-primary-foreground mb-4">
-            Trust in Quality, Grow with Confidence
-          </h2>
-          <p className="text-primary-foreground/80 mb-8 max-w-xl mx-auto">
+      <AnimatedSection className="py-24 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary to-secondary" />
+        
+        <div className="absolute inset-0 overflow-hidden">
+          <motion.div 
+            className="absolute -top-20 -right-20 w-96 h-96 bg-white/10 rounded-full blur-3xl"
+            animate={{ scale: [1, 1.2, 1] }}
+            transition={{ duration: 8, repeat: Infinity }}
+          />
+        </div>
+
+        <div className="container relative z-10 text-center">
+          <AnimatedHeading>
+            <h2 className="text-3xl md:text-4xl font-bold text-primary-foreground mb-4">
+              Trust in Quality, Grow with Confidence
+            </h2>
+          </AnimatedHeading>
+          <AnimatedText delay={0.2} className="text-primary-foreground/80 mb-10 max-w-xl mx-auto text-lg">
             Partner with Prana Organic Farms for premium organic vermicompost
             that meets the highest international standards.
-          </p>
-          <Button
-            asChild
-            size="lg"
-            className="bg-accent hover:bg-accent/90 text-accent-foreground"
+          </AnimatedText>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.4 }}
           >
-            <Link to="/contact">
-              Request Quality Documentation
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </Link>
-          </Button>
+            <Button
+              asChild
+              size="lg"
+              className="bg-accent hover:bg-accent/90 text-accent-foreground rounded-full px-10 shadow-2xl hover:scale-105 transition-all group"
+            >
+              <Link to="/contact">
+                Request Quality Documentation
+                <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </Button>
+          </motion.div>
         </div>
-      </section>
+      </AnimatedSection>
     </Layout>
   );
 };
