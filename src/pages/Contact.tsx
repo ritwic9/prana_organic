@@ -23,7 +23,7 @@ const Contact = () => {
   });
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -252,7 +252,7 @@ const Contact = () => {
                       </div>
                       <div>
                         <h3 className="font-semibold text-foreground">Phone</h3>
-                        <p className="text-muted-foreground">+91-9876543210 </p>
+                        <p className="text-muted-foreground">+91-8655312300 </p>
                       </div>
                     </motion.a>
 
@@ -267,7 +267,7 @@ const Contact = () => {
                       <div>
                         <h3 className="font-semibold text-foreground">Email</h3>
                         <p className="text-muted-foreground">
-                          sayhello@pranaorganicfarms.com
+                          info@pranaorganicfarms.com
                         </p>
                       </div>
                     </motion.a>

@@ -135,7 +135,7 @@ const Index = () => {
               transition={{ delay: 0.4, duration: 0.8 }}
               className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-6 leading-tight"
             >
-              Premium Fertility,{" "}
+              Premium Soil Nutrition,{" "}
               <span className="relative">
                 <span className="relative z-10 text-primary">Naturally</span>
                 <motion.span

@@ -14,7 +14,10 @@ import {
 } from "lucide-react";
 import Layout from "@/components/Layout";
 import GlassCard from "@/components/GlassCard";
-import AnimatedSection, { AnimatedHeading, AnimatedText } from "@/components/AnimatedSection";
+import AnimatedSection, {
+  AnimatedHeading,
+  AnimatedText,
+} from "@/components/AnimatedSection";
 import { motion } from "framer-motion";
 
 const features = [
@@ -37,21 +40,27 @@ const Product = () => {
           name="description"
           content="100% natural, nutrient-rich organic vermicompost. Export-ready quality with high NPK profile. Available in 5kg, 10kg, 25kg, and 50kg packaging."
         />
-        <meta property="og:title" content="Premium Organic Vermicompost | Prana Organic Farms" />
-        <meta property="og:description" content="100% natural, nutrient-rich organic vermicompost. Export-ready quality trusted by growers worldwide." />
+        <meta
+          property="og:title"
+          content="Premium Organic Vermicompost | Prana Organic Farms"
+        />
+        <meta
+          property="og:description"
+          content="100% natural, nutrient-rich organic vermicompost. Export-ready quality trusted by growers worldwide."
+        />
       </Helmet>
 
       {/* Hero Section */}
       <section className="relative py-32 md:py-40 overflow-hidden">
         <div className="absolute inset-0 animated-gradient" />
-        
+
         {/* Floating elements */}
-        <motion.div 
+        <motion.div
           className="absolute top-20 right-1/4 w-72 h-72 bg-primary/20 rounded-full blur-3xl"
           animate={{ y: [0, 30, 0] }}
           transition={{ duration: 8, repeat: Infinity }}
         />
-        <motion.div 
+        <motion.div
           className="absolute bottom-20 left-1/4 w-96 h-96 bg-secondary/15 rounded-full blur-3xl"
           animate={{ y: [0, -20, 0] }}
           transition={{ duration: 6, repeat: Infinity }}
@@ -89,9 +98,9 @@ const Product = () => {
               transition={{ delay: 0.5 }}
               className="text-lg md:text-xl text-muted-foreground leading-relaxed"
             >
-              100% natural, nutrient-rich vermicompost produced using sustainable
-              farming techniques. Export-ready quality trusted by growers
-              worldwide.
+              100% natural, nutrient-rich vermicompost produced using
+              sustainable farming techniques. Export-ready quality trusted by
+              growers worldwide.
             </motion.p>
           </motion.div>
         </div>
@@ -100,7 +109,7 @@ const Product = () => {
       {/* Features Section */}
       <AnimatedSection className="py-24 relative">
         <div className="absolute inset-0 bg-gradient-to-b from-muted/30 to-transparent" />
-        
+
         <div className="container relative z-10">
           <AnimatedHeading className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground">
@@ -118,7 +127,9 @@ const Product = () => {
                   >
                     <feature.icon className="h-6 w-6 text-primary" />
                   </motion.div>
-                  <p className="text-foreground font-medium pt-2">{feature.text}</p>
+                  <p className="text-foreground font-medium pt-2">
+                    {feature.text}
+                  </p>
                 </div>
               </GlassCard>
             ))}
@@ -129,7 +140,10 @@ const Product = () => {
       {/* Packaging Section */}
       <AnimatedSection className="py-24 relative overflow-hidden">
         <div className="container relative z-10">
-          <GlassCard hover={false} className="max-w-3xl mx-auto text-center p-12">
+          <GlassCard
+            hover={false}
+            className="max-w-3xl mx-auto text-center p-12"
+          >
             <motion.div
               whileHover={{ scale: 1.1, rotate: 5 }}
               className="w-20 h-20 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-2xl flex items-center justify-center mx-auto mb-8"
@@ -168,7 +182,7 @@ const Product = () => {
       </AnimatedSection>
 
       {/* CTA Section */}
-      <AnimatedSection className="py-24 relative overflow-hidden">
+      {/* <AnimatedSection className="py-24 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-secondary/10 via-muted/30 to-primary/10" />
         
         <div className="container relative z-10">
@@ -207,7 +221,7 @@ const Product = () => {
             </motion.div>
           </GlassCard>
         </div>
-      </AnimatedSection>
+      </AnimatedSection> */}
     </Layout>
   );
 };
